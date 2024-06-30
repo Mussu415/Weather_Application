@@ -10,8 +10,8 @@
 <body>
 
 <div class="container">
-    <h1>Welcome user!!</h1>
-    <a href="login-form" id="login-link">Login to get weather updates</a>
+    <h1>Welcome to Taapmaan!!</h1>
+    <a href="login-form" id="login-link">Login to get Taapmaan</a>
     
     <form id="login-form" class="hidden" method="POST" action="LoginServelt">
         <input type="text" id="username" name="username" placeholder="Enter your name" required>
