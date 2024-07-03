@@ -22,9 +22,35 @@ if(session.getAttribute("name")==null)
 <div class="weather-app">
 
   <div class="container">
-    <h3 class="brand">Taapmaan</h3>
-    
-   
+  <div class="menu"><i class="fa-solid fa-bars"></i></div>
+        <div class="dropdown">
+          <ul class="dropdown-menu">
+            <li class="dropdown-item" id="search-coordinates">Search with Latitude and Longitude</li>
+            <li class="dropdown-item" id="search-custom-date">Search Average Temperature Custom Date</li>
+            <li class="dropdown-item" id="logout"><a href="Login.jsp">Logout</a></li>
+          </ul>
+        </div>
+        <h3 class="brand">Taapmaan</h3>
+      </div>
+      
+      <div id="coordinateSearch" class="hidden search-form">
+        <form id="coordinateInput">
+          <input type="text" class="search" placeholder="Latitude" id="latInput" />
+          <input type="text" class="search" placeholder="Longitude" id="lonInput" />
+          <button type="submit" class="submit" onClick="getWeatherByLatLon()">
+          <i class="fas fa-search"></i>
+          </button>
+        </form>     
+      </div>
+      
+      <div id="customDateSearch" class="hidden search-form">
+        <form id="customDateInput">
+          <input type="date" class="search" id="startDate" />
+          <input type="date" class="search" id="endDate" />
+          <button type="submit" class="submit">Search</button>
+        </form>
+      </div>
+
     <div class="temperature" >
       <h1 class="temp"> </h1>
       <div class="city-time">
@@ -39,6 +65,7 @@ if(session.getAttribute("name")==null)
       </div>
     </div>
   </div>
+  
   <div class="panel">
       <input type="text" class="search" placeholder="Search Location..." id="cityinput">
       <button class="submit" onclick="getWeatherByCityName()">
@@ -53,7 +80,7 @@ if(session.getAttribute("name")==null)
 <!-- 	      </button> -->
 <!-- 	  </div> -->
 
-      <div id="weatherInfo"></div>
+    <div id="weatherInfo"></div>
     <ul class="cities">
       <li class="city">Jodhpur</li>
       <li class="city">Udaipur</li>

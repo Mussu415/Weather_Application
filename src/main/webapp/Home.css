@@ -56,6 +56,58 @@ h1, h3{
 /*     padding: 2em 3em 4em 3em; */
 /* } */
 
+.container{
+	display:flex;
+	justify-content:center;
+	align-items: center;
+	position:relative;
+}
+
+.menu{
+	margin:10px;
+}
+
+.dropdown{
+	position:relative;
+}
+
+.dropdown-menu{
+	display:none;
+	position:absolute;
+	top:40px;
+	left: 0;
+	background: rgba(110, 110, 110, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	z-index: 1;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 250px;
+}
+
+.dropdown-menu.show {
+	display: block;
+}
+  
+.dropdown-item {
+	padding: 10px 20px;
+	cursor: pointer;
+	color: #fff;
+}
+  
+.dropdown-item:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+  
+.hidden {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+	}
+
 .temperature{
 	display: flex;
 	justify-content: center;
@@ -167,14 +219,6 @@ h1, h3{
     justify-content: space-between;
     align-items: center;
 }
-
-/* .temperature{ */
-/*     display: flex; */
-/*     justify-content: flex-start; */
-/*     position: absolute; */
-/*     bottom: 200; */
-/*     left: 100; */
-/* } */
 
 @media screen and (max-width: 800px){
     .panel, .container {
