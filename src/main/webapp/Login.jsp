@@ -9,6 +9,11 @@
 </head>
 <body>
 
+<%
+session.removeAttribute("name");
+session.invalidate();
+%>
+
 <div class="container">
     <h1>Welcome to Taapmaan!!</h1>
     <a href="login-form" id="login-link">Login to get Taapmaan</a>
