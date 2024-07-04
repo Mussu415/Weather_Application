@@ -33,7 +33,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     logout.addEventListener('click', () => {
         console.log('Logout clicked');
-        // Implement logout functionality here
+    });
+
+    // Prevent form submission default behavior
+    document.getElementById('coordinateInput').addEventListener('submit', (event) => {
+        event.preventDefault();
+        getWeatherByLatLon();
+    });
+
+    document.getElementById('customDateInput').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        CalculateAverage(startDate, endDate);
     });
 });
 
@@ -61,7 +73,7 @@ function getWeatherByLatLon() {
     const apiKey = '38370608b7254b4dbe534835240207';
     const lat = document.getElementById('latInput').value;
     const lon = document.getElementById('lonInput').value;
-    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`;
+    const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`;
 
     fetch(apiUrl)
         .then(response => {
@@ -74,7 +86,8 @@ function getWeatherByLatLon() {
             displayWeather(data);
         })
         .catch(error => {
-            document.getElementById('weatherInfo').innerText = 'Error: ' + error.message;
+            console.error('Error fetching weather data:', error);
+            document.getElementById('weatherInfo').innerText = 'Error fetching weather data: ' + error.message;
         });
 }
 
@@ -94,3 +107,46 @@ function displayWeather(data) {
     wind.innerHTML = `${current.wind_kph} kph`;
     lastupdated.innerHTML = `${current.last_updated}`;
 }
+
+function CalculateAverage(startDate, endDate, avgCity) {
+	    fetch('./data.json')
+	        .then(res => res.json())
+	        .then(data => {
+	            const cities = data.cities; // Corrected variable name
+	            const cityData = cities.find(city => city.city === avgCity); // Corrected variable name
+				console.log(cityData);
+	            if (cityData) {
+	                const temperatures = cityData.temperatures;
+	                let total = 0;
+	                let count = 0;
+
+	                // Iterate through each date in the temperatures object
+	                for (const date in temperatures) {
+	                    if (date >= startDate && date <= endDate) {
+	                        total += temperatures[date];
+	                        count++;
+	                    }
+	                }
+
+	                if (count > 0) {
+	                    const average = total / count;
+	                    // Display average temperature on the web page
+	                    const averageResult = document.getElementById('averageResult');
+	                    averageResult.innerHTML = "<p>Average temperature in " + avgCity +" between " + startDate + " and " + endDate + " is " + average.toFixed(2) + " °C</p>";
+	                } else {
+	                    console.log("No temperature data found between " + startDate + " and " + endDate);
+	                    // Display message if no data found
+	                    const averageResult = document.getElementById('averageResult');
+	                    averageResult.innerHTML = "<p>No temperature data found between " + startDate + " and " + endDate + "</p>";
+	                }
+	            } else {
+	                console.log("City '" + cityName + "' not found in the data");
+	                // Display message if city not found
+	                const averageResult = document.getElementById('averageResult');
+	                averageResult.innerHTML = "<p>City '" + avgCity + "' not found in the data</p>";
+	            }
+	        })
+	        .catch(err => console.error('Error fetching data:', err));
+	}
+	//CalculateAverage('2023-07-10', '2023-09-20','Delhi');
+

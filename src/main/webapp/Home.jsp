@@ -35,11 +35,15 @@ if(session.getAttribute("name")==null)
       
       <div id="coordinateSearch" class="hidden search-form">
         <form id="coordinateInput">
+        <div class="coords">
           <input type="text" class="search" placeholder="Latitude" id="latInput" />
+        </div>
+        <div class="coords">
           <input type="text" class="search" placeholder="Longitude" id="lonInput" />
           <button type="submit" class="submit" onClick="getWeatherByLatLon()">
           <i class="fas fa-search"></i>
           </button>
+        </div>
         </form>     
       </div>
       
@@ -47,8 +51,15 @@ if(session.getAttribute("name")==null)
         <form id="customDateInput">
           <input type="date" class="search" id="startDate" />
           <input type="date" class="search" id="endDate" />
-          <button type="submit" class="submit">Search</button>
+          <select class="avgCity" id="avgCity">
+          <option value="Jaipur">Jaipur</option>
+          <option value="Pune">Pune</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Delhi">Delhi</option>
+          </select>
+          <button type="submit" class="submit" onClick="CalculateAverage()">Search</button>
         </form>
+        <div id="averageResult" class="averageResult"></div>
       </div>
 
     <div class="temperature" >
@@ -59,8 +70,6 @@ if(session.getAttribute("name")==null)
       </div>
     
       <div class="weather">
-        <!--<img alt="icon" src="weather_conditions.json" class="icon" width="50" height="50">-->
-        
         <span class="conditions" id= "condition"> </span>
       </div>
     </div>
@@ -71,14 +80,6 @@ if(session.getAttribute("name")==null)
       <button class="submit" onclick="getWeatherByCityName()">
         <i class="fas fa-search"></i>
       </button>
-      
-<!--       <div> -->
-<!-- 	  		<input type="text" class="search" placeholder="Enter Latitude..." id="latInput"> -->
-<!-- 	  		<input type="text" class="search" placeholder="Enter Longitude..." id="lonInput"> -->
-<!-- 	      <button class="submit" onclick="getWeatherByLatLon()"> -->
-<!-- 	        <i class="fas fa-search"></i> -->
-<!-- 	      </button> -->
-<!-- 	  </div> -->
 
     <div id="weatherInfo"></div>
     <ul class="cities">
