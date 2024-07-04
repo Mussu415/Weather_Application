@@ -9,6 +9,7 @@
 <link rel="icon" href="images/favicon.ico">
 <script src="Home.js" defer></script>
 <script src="https://kit.fontawesome.com/2e138218ab.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -82,7 +83,7 @@ if(session.getAttribute("name")==null)
       </button>
 
     <div id="weatherInfo"></div>
-    <ul class="cities">
+    <ul class="savedCities">
       <li class="city">Jodhpur</li>
       <li class="city">Udaipur</li>
       <li class="city">Ajmer</li>
@@ -110,5 +111,6 @@ if(session.getAttribute("name")==null)
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
 </body>
 </html>

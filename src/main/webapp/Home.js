@@ -112,39 +112,44 @@ function CalculateAverage(startDate, endDate, avgCity) {
 	    fetch('./data.json')
 	        .then(res => res.json())
 	        .then(data => {
-	            const cities = data.cities; // Corrected variable name
+				const cities = data.cities; // Corrected variable name
+				const newStartDate= moment(startDate).format('MM/DD/YYYY');
+				const newEndDate= moment(endDate).format('MM/DD/YYYY');
 	            const cityData = cities.find(city => city.city === avgCity); // Corrected variable name
 				console.log(cityData);
+				
 	            if (cityData) {
 	                const temperatures = cityData.temperatures;
 	                let total = 0;
 	                let count = 0;
 
 	                // Iterate through each date in the temperatures object
-	                for (const date in temperatures) {
-	                    if (date >= startDate && date <= endDate) {
-	                        total += temperatures[date];
-	                        count++;
-	                    }
-	                }
+					
+            for (const date in temperatures) {
+				if (moment(date, 'MM/DD/YYYY').isSameOrAfter(newStartDate) && moment(date, 'MM/DD/YYYY').isSameOrBefore(newEndDate)) {
+                      console.log(temperatures[date]);
+                      total += temperatures[date];
+                      count++;
+                  }
+			}
 
-	                if (count > 0) {
-	                    const average = total / count;
-	                    // Display average temperature on the web page
-	                    const averageResult = document.getElementById('averageResult');
-	                    averageResult.innerHTML = "<p>Average temperature in " + avgCity +" between " + startDate + " and " + endDate + " is " + average.toFixed(2) + " °C</p>";
-	                } else {
-	                    console.log("No temperature data found between " + startDate + " and " + endDate);
-	                    // Display message if no data found
-	                    const averageResult = document.getElementById('averageResult');
-	                    averageResult.innerHTML = "<p>No temperature data found between " + startDate + " and " + endDate + "</p>";
-	                }
-	            } else {
-	                console.log("City '" + cityName + "' not found in the data");
-	                // Display message if city not found
-	                const averageResult = document.getElementById('averageResult');
-	                averageResult.innerHTML = "<p>City '" + avgCity + "' not found in the data</p>";
-	            }
+            if (count > 0) {
+                const average = total / count;
+                // Display average temperature on the web page
+                const averageResult = document.getElementById('averageResult');
+                averageResult.innerHTML = "<p>Average temperature in " + cityData.avgCity +" is " + average.toFixed(2) + " °C</p>";
+            } else {
+                console.log("No temperature data found between " + startDate + " and " + endDate);
+                // Display message if no data found
+                const averageResult = document.getElementById('averageResult');
+                averageResult.innerHTML = "<p>No temperature data found between " + startDate + " and " + endDate + "</p>";
+            }
+		        } else {
+		            console.log("City '" + cityName + "' not found in the data");
+		            // Display message if city not found
+		            const averageResult = document.getElementById('averageResult');
+		            averageResult.innerHTML = "<p>No temperature data found between " + startDate + " and " + endDate + "</p>";
+		        }
 	        })
 	        .catch(err => console.error('Error fetching data:', err));
 	}
