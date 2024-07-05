@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const coordinateSearch = document.getElementById('coordinateSearch');
     const customDateSearch = document.getElementById('customDateSearch');
     const logout = document.getElementById('logout');
+	const addCityForm = document.getElementById('addCityForm');
+	const addCityInput = document.getElementById('addCityInput');
     
     menuIcon.addEventListener('click', () => {
         dropdownMenu.classList.toggle('show');
@@ -34,8 +36,62 @@ document.addEventListener('DOMContentLoaded', () => {
     logout.addEventListener('click', () => {
         console.log('Logout clicked');
     });
+	
+	addCityForm.addEventListener('submit', (event) => {
+	    event.preventDefault();
+		const cityInput = document.getElementById('cityinput');
+	    const city = cityInput.value.trim();
+	    if (!city) {
+	      alert('Please enter a city name');
+	      return;
+	    }
+	    addCityToDatabase(city);
+	  });
+	
+//	const fetchSavedCities = () => {
+//	    fetch('GetSavedCitiesServlet')
+//        .then(response => response.json())
+//        .then(data => {
+//            const savedCitiesList = document.getElementById('savedCities');
+//            savedCitiesList.innerHTML = '';
+//            data.savedCities.forEach(city => {
+//                const listItem = document.createElement('li');
+//                listItem.textContent = city;
+//				listItem.addEventListener('click', () => {
+//		            getWeatherByCityName(city); // Fetch weather when clicked
+//		          });
+//		          savedCitiesList.appendChild(listItem);
+//		        });
+//	      })
+//	      .catch(error => console.error('Error fetching saved cities:', error));
+//	  };
+//
+//	  fetchSavedCities(); // Fetch saved cities on page load
+	});
 
-    // Prevent form submission default behavior
+		function addCityToDatabase(city) {
+		  fetch(`AddCityServlet?city=${encodeURIComponent(city)}`)
+		    .then(response => {
+				console.log(response);
+		      if (!response.ok) {
+		        throw new Error('Failed to add city');
+		      }
+		      return response.json();
+		    })
+		    .then(data => {
+		      console.log('City added successfully:', data);
+		      const savedCitiesList = document.getElementById('savedCities');
+		      const listItem = document.createElement('li');
+		      listItem.textContent = city;
+		      listItem.addEventListener('click', () => {
+		        getWeatherByCityName(city); // Fetch weather when clicked
+		      });
+		      savedCitiesList.appendChild(listItem);
+		    })
+		    .catch(error => console.error('Error adding city:', error));
+		}
+
+    
     document.getElementById('coordinateInput').addEventListener('submit', (event) => {
         event.preventDefault();
         getWeatherByLatLon();
@@ -47,26 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const endDate = document.getElementById('endDate').value;
         CalculateAverage(startDate, endDate);
     });
-});
+
 
 function getWeatherByCityName() {
     const apiKey = '38370608b7254b4dbe534835240207';
     const cityInput = document.getElementById('cityinput').value;
     const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${cityInput}`;
 
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            displayWeather(data);
-        })
-        .catch(error => {
-            document.getElementById('weatherInfo').innerText = 'Error: ' + error.message;
-        });
+	 getWeather(apiUrl);
 }
 
 function getWeatherByLatLon() {
@@ -74,7 +118,11 @@ function getWeatherByLatLon() {
     const lat = document.getElementById('latInput').value;
     const lon = document.getElementById('lonInput').value;
     const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`;
-
+	
+	 getWeather(apiUrl);
+	}
+	
+	function getWeather(apiUrl){
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
@@ -86,9 +134,9 @@ function getWeatherByLatLon() {
             displayWeather(data);
         })
         .catch(error => {
-            console.error('Error fetching weather data:', error);
             document.getElementById('weatherInfo').innerText = 'Error fetching weather data: ' + error.message;
         });
+		
 }
 
 function displayWeather(data) {

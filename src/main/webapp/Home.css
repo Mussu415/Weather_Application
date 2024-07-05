@@ -15,7 +15,7 @@ h1, h3{
 
 .weather-app{
     min-height:100vh;
-    background-image: url(images/day1.avif);
+    background-image: url(./backImg.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -30,7 +30,7 @@ h1, h3{
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
-    padding: 2em 3em 4em 3em;
+    padding: 0em 3em 4em 1em;
 }
 
 /* .weather-app::before{ */
@@ -61,6 +61,11 @@ h1, h3{
 	justify-content:center;
 	align-items: center;
 	position:relative;
+	font-size: 25px;
+}
+
+.brand{
+	padding: 0 15px;
 }
 
 .menu{
@@ -96,12 +101,25 @@ h1, h3{
 	padding: 10px 20px;
 	cursor: pointer;
 	color: #fff;
+	font-size: 16px;
 }
   
 .dropdown-item:hover {
 	background: rgba(255, 255, 255, 0.1);
 }
+
+#coordinateInput{
+	padding: 0 40px;
+}
+
+.coords{
+	padding: 7px 0;
+}
   
+#customDateInput{
+	padding: 0 40px;
+}
+
 .hidden {
 	opacity: 0;
 	visibility: hidden;
@@ -146,7 +164,7 @@ h1, h3{
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     z-index: 1;
-    padding: 3em 2em;
+    padding: 1.8em 2em;
     overflow-Y: scroll;
 }
 
@@ -165,6 +183,34 @@ h1, h3{
     transition: 0.4s;
 }
 
+.dateBtns{
+	display: flex;
+    text-align: center;
+    justify-content: space-between;
+	padding-right: 50px;
+}
+
+.avgCity{
+	color: #fff;
+    border: transparent;
+    font-size: 14px;
+    background: rgba(110, 110, 110, 0.75);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+	padding: 9px 12px;
+	margin: 10px 0;
+	border: transparent;
+    border-radius: 5px;
+}
+
+.submit{
+	background-color: #fa6d1b;
+    padding: 9px 20px;
+    font-size: 14px;
+    border: transparent;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
 .submit:hover {
     background: #fff !important;
     color: #000;
@@ -174,10 +220,10 @@ h1, h3{
     background: none;
     border: none;
     border-bottom: 1px #ccc solid;
-    padding: 0 1em 0.5em 0;
+    padding: 8px 0;
     width: 80%;
     color: #fff;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 .search:focus{
@@ -196,7 +242,7 @@ h1, h3{
 
 .panel ul li{
     color:#ccc;
-    margin: 2.1em 0;
+    margin: 2.2em 0;
     opacity: 0.8;
 }
 

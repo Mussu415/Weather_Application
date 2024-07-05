@@ -52,6 +52,7 @@ if(session.getAttribute("name")==null)
         <form id="customDateInput">
           <input type="date" class="search" id="startDate" />
           <input type="date" class="search" id="endDate" />
+          <div class="dateBtns">
           <select class="avgCity" id="avgCity">
           <option value="Jaipur">Jaipur</option>
           <option value="Pune">Pune</option>
@@ -59,6 +60,7 @@ if(session.getAttribute("name")==null)
           <option value="Delhi">Delhi</option>
           </select>
           <button type="submit" class="submit" onClick="CalculateAverage()">Search</button>
+          </div>
         </form>
         <div id="averageResult" class="averageResult"></div>
       </div>
@@ -83,13 +85,12 @@ if(session.getAttribute("name")==null)
       </button>
 
     <div id="weatherInfo"></div>
-    <ul class="savedCities">
-      <li class="city">Jodhpur</li>
-      <li class="city">Udaipur</li>
-      <li class="city">Ajmer</li>
-      <li class="city">Delhi</li>
-      <li class="city">Jaisalmer</li>
+    <ul class="savedCities" id="savedCities">
+     <!-- added cities will be included here -->
     </ul>
+    <form id="addCityForm" method="get" action="AddCity">
+    <button type="submit" class="addCity" id="addCity">Add city</button>
+    </form>
   
     <ul class="details">
       <h4>Weather Details</h4>
