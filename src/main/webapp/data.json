@@ -466,6 +466,8 @@
   
   {
   "avgCity": "Pune",
+  "country": "India",
+      "Year": 2023,
   "temperatures": {
     "01/01/2023": 22.5,
     "01/02/2023": 23.1,
@@ -683,6 +685,8 @@
   },
      {
   "avgCity": "Delhi",
+  "country": "India",
+      "Year": 2023,
   "temperatures": {
     "01/01/2023": 21.5,
     "01/02/2023": 22.1,
@@ -869,6 +873,8 @@
 },
 {
   "avgCity": "Jaipur",
+  "country": "India",
+      "Year": 2023,
   "temperatures":  {
     "01/01/2023": 18.5,
     "01/02/2023": 18.7,

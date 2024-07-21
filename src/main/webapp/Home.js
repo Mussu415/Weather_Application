@@ -101,7 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
-        CalculateAverage(startDate, endDate);
+		const avgCity = document.getElementById('avgCity').value; 
+        CalculateAverage(startDate, endDate, avgCity);
     });
 
 

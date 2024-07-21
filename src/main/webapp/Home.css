@@ -15,7 +15,7 @@ h1, h3{
 
 .weather-app{
     min-height:100vh;
-    background-image: url(./backImg.jpg);
+    background-image: url(images/sunny.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -182,6 +182,7 @@ h1, h3{
     font-size: 1.2em;
     transition: 0.4s;
 }
+
 
 .dateBtns{
 	display: flex;

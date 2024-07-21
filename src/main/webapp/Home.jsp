@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
 
 <!DOCTYPE html>
 <html>
@@ -13,12 +13,12 @@
 </head>
 <body>
 
-<%
+<!-- <%
 if(session.getAttribute("name")==null)
        {
 	response.sendRedirect("Login.jsp");
 	         }
-%>
+%> -->
 
 <div class="weather-app">
 
@@ -53,14 +53,14 @@ if(session.getAttribute("name")==null)
           <input type="date" class="search" id="startDate" />
           <input type="date" class="search" id="endDate" />
           <div class="dateBtns">
-          <select class="avgCity" id="avgCity">
-          <option value="Jaipur">Jaipur</option>
-          <option value="Pune">Pune</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Delhi">Delhi</option>
-          </select>
-          <button type="submit" class="submit" onClick="CalculateAverage()">Search</button>
-          </div>
+            <select class="avgCity" id="avgCity">
+              <option value="Jaipur">Jaipur</option>
+              <option value="Pune">Pune</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Delhi">Delhi</option>
+            </select>
+            <button type="submit" class="submit" onClick="CalculateAverage()">Search</button>
+        </div>
         </form>
         <div id="averageResult" class="averageResult"></div>
       </div>
@@ -85,12 +85,13 @@ if(session.getAttribute("name")==null)
       </button>
 
     <div id="weatherInfo"></div>
-    <ul class="savedCities" id="savedCities">
-     <!-- added cities will be included here -->
+    <ul class="savedCities">
+      <li class="city">Jodhpur</li>
+      <li class="city">Udaipur</li>
+      <li class="city">Ajmer</li>
+      <li class="city">Delhi</li>
+      <li class="city">Jaisalmer</li>
     </ul>
-    <form id="addCityForm" method="get" action="AddCity">
-    <button type="submit" class="addCity" id="addCity">Add city</button>
-    </form>
   
     <ul class="details">
       <h4>Weather Details</h4>
